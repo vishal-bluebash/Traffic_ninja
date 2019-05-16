@@ -25,6 +25,7 @@ class ProxyMiddleware
     # Setup target request
     target_request = Net::HTTP.const_get(source_request.request_method.capitalize).new(full_path)
     # Headers
+
     target_request.initialize_http_header(self.class.extract_http_request_headers(source_request.env))
     # Setup body in case of request type - POST, PUT, PATCH etc
     if target_request.request_body_permitted? && source_request.body
@@ -64,6 +65,7 @@ class ProxyMiddleware
     Rack::Utils::HeaderHash.new Hash[mapped]
   end
 
+  # Reject headers with nil value & unwanted keys
   def self.extract_http_request_headers(env)
     headers = env.reject do |k, v|
       !(/^HTTP_[A-Z0-9_]+$/ === k) || v.nil?
