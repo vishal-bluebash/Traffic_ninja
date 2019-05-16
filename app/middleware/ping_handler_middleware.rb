@@ -13,7 +13,8 @@ class PingHandlerMiddleware
     # Store ping only if ​proxy=true
     if request.params['proxy'] == 'true'
       ping = store_ping(request)
-      Rails.logger.error(">>>>> Ping data stored successfully with #{ping.validation_errors.count} validation errors")
+      errors_count = ping.validation_errors.present? ? ping.validation_errors.count : 0
+      Rails.logger.error(">>>>> Ping data stored successfully with #{errors_count} validation errors")
     else
       Rails.logger.error(">>>>> Ping data skipped to store")
     end
