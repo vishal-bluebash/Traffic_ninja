@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require 'rails/all'
+require_relative "../app/middleware/proxy_middleware"
+require_relative "../app/middleware/ping_handler_middleware"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -15,5 +17,8 @@ module NielsenTrafficNinja
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.middleware.use PingHandlerMiddleware
+    config.middleware.use ProxyMiddleware
   end
 end

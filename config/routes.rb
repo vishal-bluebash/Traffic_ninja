@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Accept all type requests GET, POST, PUT, PATCH etc.
+  match '*path', to: 'pings#handle', via: :all
 end
