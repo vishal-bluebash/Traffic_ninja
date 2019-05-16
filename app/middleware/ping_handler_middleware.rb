@@ -9,8 +9,14 @@ class PingHandlerMiddleware
     request = Rack::Request.new(env)
     @env = env
 
+    Rails.logger.error(">>>>> Responded received - Request Type: #{env['REQUEST_METHOD']} & URI: #{env['REQUEST_URI']}")
     # Store ping only if ​proxy=true
-    store_ping(request) if request.params['proxy'] == 'true'
+    if request.params['proxy'] == 'true'
+      ping = store_ping(request)
+      Rails.logger.error(">>>>> Ping data stored successfully with #{ping.validation_errors.count} validation errors")
+    else
+      Rails.logger.error(">>>>> Ping data skipped to store")
+    end
 
     @app.call(env)
   end

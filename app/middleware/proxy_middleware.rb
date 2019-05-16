@@ -55,7 +55,11 @@ class ProxyMiddleware
     body    = [body] unless body.respond_to?(:each)
 
     headers.reject! { |k| ['connection', 'keep-alive', 'proxy-authenticate', 'proxy-authorization', 'te', 'trailer', 'transfer-encoding', 'upgrade'].include? k.downcase }
+    Rails.logger.error(">>>>> Responded successfully with body #{body}")
     [target_response.code, headers, body]
+  rescue Exception => exception
+    Rails.logger.error(">>>>> Exception occured while processing request, Message: #{exception.message}")
+    [500, {}, [exception.message]]
   end
 
   def self.normalize_headers(headers)
