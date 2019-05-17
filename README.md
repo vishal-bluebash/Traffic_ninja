@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+​This application is accept all type of Store​, ​Validate​ traffic & Forward to https://www.mocky.io/v2/5185415ba171ea3a00704eed/
 
-Things you may want to cover:
+### Here are the setup instructions from repository:
 
-* Ruby version
+* Dependencies
+   `Ruby version - 2.4.4`
+   `Latest Postgres`
 
-* System dependencies
+* Clone application locally
+   `git clone repo_url`
 
-* Configuration
+* Install gems
+   `bundle install`
 
-* Database creation
+* Configure database.yml
+   `mv database.yml.example database.yml`
+   `rake db:create`
+   `rake db:migrate`
 
-* Database initialization
+* Start application
 
-* How to run the test suite
+	`rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
+After all these steps your application is up and running
 
-* Deployment instructions
+Use postman for GET, POST requests or for GET request you can use browser
 
-* ...
+`http://localhost:3000//pings/handle?proxy=true&type=static&app_id=1 2376` 
+`http://localhost:3000//pings/handle?type=static&app_id=1 2376`
+`http://localhost:3000//pings/handle?type=1static&app_id=1 2376`
+
+
+
+### Here are the setup instructions from DOCKER:
+
+How to run
+	`docker-compose build`
+	`docker-compose up -d`
+	`docker-compose exec -it web rake db:create`
+	`docker-compose exec -it web rake db:migrate`
+
+
