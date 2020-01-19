@@ -56,7 +56,7 @@ How to run
 ● The service should append all Query string parameters to the above Mock URL 
 
 
-Store:
+## Store:
  ● The service should only store pings (traffic) in a database when the URL has a query parameter ​proxy=true
 
  ● The service should store the following ping data: 
@@ -67,7 +67,7 @@ Store:
 
                  - Errors (Key/Value described in validation section)
 
-Example:
+## Example:
 - localhost/<controller>/<action>?proxy=true&type=static&app_id=1 2376
 
 
@@ -83,7 +83,7 @@ Validate:
 
 ● The service should store ping’s errors in ​Errors​ column
 
-Validate Technologies
+## Validate Technologies
 
 ● Ruby 2.4+, Rails 5+, Postgres 9.6+ Evaluation
 
