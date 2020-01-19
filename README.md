@@ -72,7 +72,8 @@ How to run
 
 
 
-Validate:
+## Validate:
+
 ● Incase of stored pings, the service should validate the following criteria: 
 
 		- validate presence of query params: type​ and ​app_id
